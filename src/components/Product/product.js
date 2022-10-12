@@ -2,7 +2,7 @@ import React from "react";
 
 export default function product(props) {
   return (
-    <div className="row">
+    <div className="row mt-3">
       <div className="col-5">
         <h2>
           <span className="px-2">{props.product.name}</span>
@@ -12,23 +12,29 @@ export default function product(props) {
         </h2>
       </div>
 
-      <div className="col-4">
+      <div className="col-3">
         <div
-          class="btn-group"
+          className="btn-group"
           role="group"
           aria-label="Basic mixed styles example"
         >
-          <button type="button" class="btn btn-danger">
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={() => {
+              props.decrementQuality(props.index);
+            }}
+          >
             -
           </button>
-          <button type="button" class="btn btn-warning">
+          <button type="button" className="btn btn-warning">
             {props.product.quantity}
           </button>
           <button
             type="button"
-            class="btn btn-success"
+            className="btn btn-success"
             onClick={() => {
-              this.incrementQuantity(props.index);
+              props.incrementQuantity(props.index);
             }}
           >
             +
@@ -36,9 +42,17 @@ export default function product(props) {
         </div>
       </div>
 
-      <div className="col-3">
+      <div className="col-2">
         {props.product.quantity * props.product.price}
       </div>
+      <button
+        className="col-2 btn btn-danger"
+        onClick={() => {
+          props.remove(props.index);
+        }}
+      >
+        Remove
+      </button>
     </div>
   );
 }
